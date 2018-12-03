@@ -1,2 +1,0 @@
-# Redirect default Netlify subdomain to primary domain
-http://cranky-galileo-e9dba8.netlify.com/* http://nicolasterol.com/:splat 301!

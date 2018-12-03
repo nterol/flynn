@@ -1,0 +1,4 @@
+[[redirects]]
+    from = "https://cranky-galileo-e9dba8.netlify.com/*"
+    to = "https://nicolasterol.com/:splat"
+    force = true
