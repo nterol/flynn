@@ -1,8 +1,12 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'Nicolas Terol',
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: { displayName: false },
+    },
     'gatsby-plugin-react-helmet',
     {
       resolve: `gatsby-source-filesystem`,
@@ -25,8 +29,10 @@ module.exports = {
         icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
       },
     },
+
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
+    `gatsby-plugin-netlify`,
   ],
 }
