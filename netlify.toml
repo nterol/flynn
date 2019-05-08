@@ -3,5 +3,5 @@
   to = "https://nicolasterol.com/:splat"
   force = true
 
-  YARN_VERSION = "1.15.2"
+  YARN_VERSION = "@1.15.2"
   YARN_FLAGS ="--force"
