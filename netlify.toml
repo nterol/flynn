@@ -2,6 +2,8 @@
   from = "https://cranky-galileo-e9dba8.netlify.com/*"
   to = "https://nicolasterol.com/:splat"
   force = true
+
 [build.environment]
   YARN_VERSION = "1.15.2"
-  YARN_FLAGS ="--force"
+  YARN_FLAGS = "--force"
+  
