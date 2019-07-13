@@ -13,6 +13,7 @@ const Layout = ({ children }) => (
         site {
           siteMetadata {
             title
+            subtitle
           }
         }
       }
@@ -28,7 +29,10 @@ const Layout = ({ children }) => (
         >
           <html lang="en" />
         </Helmet>
-        <Header siteTitle={data.site.siteMetadata.title} />
+        <Header
+          siteTitle={data.site.siteMetadata.title}
+          siteSubtitle={data.site.siteMetadata.subtitle}
+        />
         <div
           style={{
             margin: '0 auto',
