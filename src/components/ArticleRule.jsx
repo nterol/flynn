@@ -4,7 +4,6 @@ import {CustomAnnotation} from './CustomAnnotation';
 
 
 const SvgContainer = styled.svg`
-    border: 1px solid #59039c;
     width: 900px;
     height: 500px;
 `

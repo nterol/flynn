@@ -21,6 +21,7 @@
     "react-annotation": "^2.1.6",
     "react-dom": "^16.8.5",
     "react-helmet": "^5.2.0",
+    "react-spring": "^8.0.27",
     "sharp": "^0.22.0",
     "spotify-web-api-node": "^4.0.0",
     "styled-components": "^4.2.0",

@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: 'Nicolas Terol',
+    subtitle: 'I build interfaces',
   },
   plugins: [
     {
