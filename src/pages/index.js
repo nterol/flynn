@@ -3,8 +3,7 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 
 import Layout from '../components/layout'
-// import Image from '../components/image'
-import { ArticleRule } from '../components/ArticleRule'
+import BlogDescription from '../components/atoms/blog-description/blog-description';
 
 const RowLayout = styled.div`
   display: flex;
@@ -12,16 +11,16 @@ const RowLayout = styled.div`
   justify-content: space-between;
 `
 
-const IndexPage = () => (
-  <Layout>
-    <RowLayout>
-      <div style={{ width: '500px' }}>
-        {/* <Image /> */}
-        <ArticleRule />
-      </div>
-    </RowLayout>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+const IndexPage = () => {
+  return (
+    <Layout>
+      <RowLayout>
+        <BlogDescription />
+        {/* <div style={{ width: '500px' }}></div> */}
+      </RowLayout>
+      <Link to="/page-2/">Go to page 2</Link>
+    </Layout>
+  )
+}
 
 export default IndexPage

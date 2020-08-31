@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, createRef } from 'react'
+import React, { useState, useEffect, createRef } from 'react'
 import styled from 'styled-components'
 import { CustomAnnotation } from './CustomAnnotation'
 
@@ -27,7 +27,7 @@ export function ArticleRule() {
     }, [])
 
     setALlWordWidth(sequentalyCompiledWidth)
-  }, [])
+  }, [sentenceRef])
 
   const getWordX = i => {
     if (i === 0 || !allWordWidth.length) return 0

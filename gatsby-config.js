@@ -1,9 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: 'Nicolas Terol',
-    subtitle: 'I build interfaces',
+    title: `Flynn`,
+    subtitle: `nterol's personal blog`,
+    description: `Hi there 👋! I'm Nicolas, I'm a french front-end developer. I like Javascript and stuffs.`,
   },
   plugins: [
+    `gatsby-plugin-sass`,
     {
       resolve: `gatsby-plugin-styled-components`,
       options: { displayName: false },
@@ -16,8 +18,8 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    'gatsby-transformer-sharp',
-    'gatsby-plugin-sharp',
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

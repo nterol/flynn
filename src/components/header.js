@@ -103,6 +103,7 @@ const Header = ({ siteTitle, siteSubtitle }) => {
             style={{
               color: 'black',
               textDecoration: 'none',
+              marginBottom: '0.5 rem'
             }}
           >
             {siteTitle}
