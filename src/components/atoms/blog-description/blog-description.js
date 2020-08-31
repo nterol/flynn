@@ -1,10 +1,9 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
-import styles from './styles.module.scss';
+import styles from './styles.module.scss'
 
 const BlogDescription = () => {
-  
   const data = useStaticQuery(graphql`
     query BlogDescriptionQuery {
       site {
@@ -15,14 +14,13 @@ const BlogDescription = () => {
     }
   `)
 
-console.log("COUCOU", data, styles);
-
   return (
     <section className={styles.section}>
-      <div className={styles.container}>{data.site.siteMetadata.description}</div>
+      <div className={styles.container}>
+        {data.site.siteMetadata.description}
+      </div>
     </section>
   )
 }
 
-
-export default BlogDescription;
+export default BlogDescription
