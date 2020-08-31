@@ -3,7 +3,5 @@
   to = "https://nicolasterol.com/:splat"
   force = true
 
-[build.environment]
-  YARN_VERSION = "1.15.2"
-  YARN_FLAGS = "--force"
+
   
