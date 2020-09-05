@@ -11,11 +11,12 @@ module.exports = {
       options: { displayName: false },
     },
     `gatsby-plugin-react-helmet`,
+    // `gatsby-plugin-mdx`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
         defaultLayouts: {
-          default: require.resolve(`./src/components/layout.js`),
+          default: require.resolve(`./src/templates/article-template.js`),
         },
       },
     },
@@ -24,6 +25,19 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `posts`,
+        path: `${__dirname}/src/posts/`,
+      },
+    },
+    {
+      resolve: "gatsby-plugin-page-creator",
+      options: {
+        path: `${__dirname}/src/posts`,
       },
     },
     `gatsby-transformer-sharp`,

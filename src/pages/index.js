@@ -1,24 +1,41 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 
 import styles from './styles.module.scss'
 
 import Layout from '../components/layout'
 import BlogDescription from '../components/atoms/blog-description/blog-description'
-import IceCreamLayer from '../components/organisms/ice-cream-layer/ice-cream-layer'
+import PostsCard from '../components/organisms/posts-card/posts-card'
 
-const IndexPage = () => {
+export const query = graphql`
+  query PostsQuery {
+    allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
+      edges {
+        node {
+          frontmatter {
+            path
+            title
+            date
+            excerpt
+            author
+            tags
+          }
+        }
+      }
+    }
+  }
+`
+
+const IndexPage = ({ data }) => {
+  const { edges } = data.allMdx
   return (
     <Layout>
       <BlogDescription />
-
       <main className={styles.mainContainer}>
-        {Array.from({ length: 6 }).map((_, i) => (
-          <IceCreamLayer key={`article-${i}`} index={i} />
+        {edges.map(({ node: { frontmatter } }) => (
+          <PostsCard key={frontmatter.date} {...frontmatter} />
         ))}
       </main>
-      {/* <div ‚style={{ width: '500px' }}></div> */}
-
       <Link to="/page-2/">Go to page 2</Link>
     </Layout>
   )
