@@ -1,0 +1,23 @@
+.layerSection {
+  border-radius: 4px;
+  background: #ff9f00c2;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: baseline;
+  color: white;
+  a {
+    text-decoration: none;
+  }
+}
+
+.header {
+    h2 {
+        color: white;
+        
+    }
+}
+
+.content {
+    font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+}
