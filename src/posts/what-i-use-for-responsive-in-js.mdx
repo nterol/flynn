@@ -1,0 +1,48 @@
+---
+path: '/what-i-use-for-responsive-in-js'
+date: 2020-09-04
+title: 'What I use for responsive in JS'
+excerpt: 'Not very satisfied with the way responsive is handled in JS, I came up with this solution'
+tags:
+  - css
+  - hooks
+  - React
+author: nterol
+---
+
+import {
+  ResponsiveWithCSS,
+  ResponsiveWithJS,
+} from '../components/samples/another-approach-to-responsive'
+
+
+## Finding a bridge between JS and CSS
+
+Last year, one of the features I had to implement a popin component that would behave differently and display different data on mobile and desktop. It also had to adapt to resize event. 
+
+The first solution I came up with was to build a hook that would listen for `resize` and trigger a state change whenever the window reached a bunch of specified dimensions.
+
+  I have been using this solution since I started doing front-end development. 
+But it has always bugged me since even when throttled, the `resize` method over solicitate its callback method.
+I wanted to fin another way of dealing with this and that's when our integrator came to me with a CSS solution.
+
+He told that me that `css` is way more efficient than javascript when it comes to listening on the user screen format.
+
+His solution would be to trigger a css update on a pseudo element's content using classical predefined media-queries.
+
+Like this : 
+
+<ResponsiveWithCSS />
+
+I thought using css was neat, but in my case I needed to retrieve this information in my React Components. 
+
+After a bit of research I found this amazing method : `window.matchMedia`. 
+Tweaking it here and there I ended up building a simple React hook listening different instances of this method. 
+It is a bit overkill since cases where one needs to listen to more than one media query are very edgy. 
+But it works fine and I have been using it 
+
+
+<ResponsiveWithJS />
+
+
+
