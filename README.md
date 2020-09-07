@@ -1,3 +1,7 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d5543dba-21c6-4f26-8f9b-05dfbf0e024b/deploy-status)](https://app.netlify.com/sites/cranky-galileo-e9dba8/deploys)
+
+My personal blog. Using Gatsby default starter.
+
 <p align="center">
   <a href="https://www.gatsbyjs.org">
     <img alt="Gatsby" src="https://www.gatsbyjs.org/monogram.svg" width="60" />
@@ -58,6 +62,8 @@ A quick look at the top-level files and directories you'll see in a Gatsby proje
     ├── README.md
     └── yarn.lock
 
+    
+
   1.  **`/node_modules`**: This directory contains all of the modules of code that your project depends on (npm packages) are automatically installed.  
   
   2.  **`/src`**: This directory will contain all of the code related to what you will see on the front-end of your site (what you see in the browser) such as your site header or a page template. `src` is a convention for “source code”.
@@ -92,6 +98,3 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 
 -   **To dive straight into code samples, head [to our documentation](https://www.gatsbyjs.org/docs/).** In particular, check out the _Guides_, _API Reference_, and _Advanced Tutorials_ sections in the sidebar.
 
-## 💫 Deploy
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-default)
