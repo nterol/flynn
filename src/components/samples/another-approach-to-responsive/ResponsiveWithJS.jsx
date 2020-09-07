@@ -1,10 +1,10 @@
-import React from 'react';
+import React from 'react'
 
-import styles from './styles.module.scss';
-import useScreen from '../../../hooks/useScreen'
+import styles from './styles.module.scss'
+import useMatchMedia from '../../../hooks/useMatchMedia'
 
 function ResponsiveWithJS() {
-  const screen = useScreen()
+  const screen = useMatchMedia()
   return (
     <section className={styles.container}>
       <div> You're currntly using a {screen} format</div>
