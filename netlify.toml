@@ -1,5 +1,6 @@
-[[redirects]]
-  from = "https://cranky-galileo-e9dba8.netlify.com/*"
-  to = "https://nicolasterol.com/:splat"
-  force = true
-  
+[build]
+  publish = "public"
+  command = "gatsby build"
+[build.environment]
+  YARN_VERSION = "1.3.2"
+  YARN_FLAGS = "--no-ignore-optional"
