@@ -5,7 +5,6 @@ const { createFilePath } = require('gatsby-source-filesystem');
 
 const onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
-  console.log('COUCOUCOUCOUC 🐣', node.internal.type);
   if (node.internal.type === 'Mdx') {
     if (typeof node.frontmatter.slug !== 'undefined') {
       const dirname = getNode(node.parent).relativeDirectory;

@@ -7,14 +7,15 @@ import Content from './Content';
 import Meta from './Meta';
 import Tags from './Tags';
 import styles from './Post.module.scss';
-import type { Node } from '../../types';
+// import type { Node } from '../../types';
 
-type Props = {
-  post: Node
-};
+// type Props = {
+//   post: Node
+// };
 
-const Post = ({ post }: Props) => {
-  const { html } = post;
+const Post = ({ post }) => {
+  console.log('🔧', post);
+  const { html, body } = post;
   const { tagSlugs, slug } = post.fields;
   const { tags, title, date } = post.frontmatter;
 
@@ -23,7 +24,7 @@ const Post = ({ post }: Props) => {
       <Link className={styles['post__home-button']} to="/">All Articles</Link>
 
       <div className={styles['post__content']}>
-        <Content body={html} title={title} />
+        <Content body={body} title={title} />
       </div>
 
       <div className={styles['post__footer']}>
