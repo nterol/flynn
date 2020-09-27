@@ -15,7 +15,7 @@ import styles from './Post.module.scss';
 
 const Post = ({ post }) => {
   console.log('🔧', post);
-  const { html, body } = post;
+  const { body } = post;
   const { tagSlugs, slug } = post.fields;
   const { tags, title, date } = post.frontmatter;
 
