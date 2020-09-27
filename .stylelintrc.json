@@ -19,7 +19,8 @@
   },
   "ignoreFiles": [
     "node_modules/*",
-    "src/assets/**"
+    "src/assets/**",
+    "src/components/**/**.js"
   ],
   "defaultSeverity": "error"
 }
