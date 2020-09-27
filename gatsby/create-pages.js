@@ -47,7 +47,6 @@ const createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  console.log('↩️', result.data);
   const { edges } = result.data.allMdx;
 
   _.each(edges, (edge) => {

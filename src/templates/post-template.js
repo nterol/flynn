@@ -11,8 +11,7 @@ import { useSiteMetadata } from '../hooks';
 //   }
 // };
 
-const PostTemplate = ({ data, ...rest }) => {
-  console.log('📦', rest);
+const PostTemplate = ({ data }) => {
   const { title: siteTitle, subtitle: siteSubtitle } = useSiteMetadata();
   const { frontmatter } = data.mdx;
   const { title: postTitle, description: postDescription, socialImage } = frontmatter;

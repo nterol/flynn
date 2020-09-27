@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Layout from '../components/Layout';
 import Sidebar from '../components/Sidebar';
 import Page from '../components/Page';
@@ -13,10 +14,8 @@ import { useSiteMetadata } from '../hooks';
 // };
 
 const PageTemplate = ({ data }) => {
-  console.log('FDGHJKLJHGFDGHJKLMOHGFDGHJKLJHGFDGHJKLHGFDGHJKGFDFXGHJKL');
-  console.log('PAGE TEMPLATE', data);
   const { title: siteTitle, subtitle: siteSubtitle } = useSiteMetadata();
-  const { html: pageBody } = data.mdx;
+  const { body: pageBody } = data.mdx;
 
   const { frontmatter } = data.mdx;
   const { title: pageTitle, description: pageDescription, socialImage } = frontmatter;
@@ -27,7 +26,7 @@ const PageTemplate = ({ data }) => {
     <Layout title={`${pageTitle} - ${siteTitle}`} description={metaDescription} socialImage={socialImageUrl} >
       <Sidebar />
       <Page title={pageTitle}>
-        <div dangerouslySetInnerHTML={{ __html: pageBody }} />
+  <MDXRenderer>{pageBody}</MDXRenderer>
       </Page>
     </Layout>
   );
@@ -37,7 +36,7 @@ export const query = graphql`
   query PageBySlug($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
       id
-      html
+      body
       frontmatter {
         title
         date
