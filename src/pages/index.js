@@ -1,23 +1,41 @@
 import React from 'react'
-import { Link } from 'gatsby'
-import styled from 'styled-components'
+import { Link, graphql } from 'gatsby'
+
+import styles from './styles.module.scss'
 
 import Layout from '../components/layout'
-import BlogDescription from '../components/atoms/blog-description/blog-description';
+import BlogDescription from '../components/atoms/blog-description/blog-description'
+import PostsCard from '../components/organisms/posts-card/posts-card'
 
-const RowLayout = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+export const query = graphql`
+  query PostsQuery {
+    allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
+      edges {
+        node {
+          frontmatter {
+            path
+            title
+            date
+            excerpt
+            author
+            tags
+          }
+        }
+      }
+    }
+  }
 `
 
-const IndexPage = () => {
+const IndexPage = ({ data }) => {
+  const { edges } = data.allMdx
   return (
     <Layout>
-      <RowLayout>
-        <BlogDescription />
-        {/* <div style={{ width: '500px' }}></div> */}
-      </RowLayout>
+      <BlogDescription />
+      <main className={styles.mainContainer}>
+        {edges.map(({ node: { frontmatter } }) => (
+          <PostsCard key={frontmatter.date} {...frontmatter} />
+        ))}
+      </main>
       <Link to="/page-2/">Go to page 2</Link>
     </Layout>
   )

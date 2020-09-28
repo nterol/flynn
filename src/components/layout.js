@@ -34,7 +34,7 @@ const Layout = ({ children }) => {
         siteTitle={data.site.siteMetadata.title}
         siteSubtitle={data.site.siteMetadata.subtitle}
       />
-      <div
+      <main
         style={{
           margin: '0 auto',
           maxWidth: 960,
@@ -43,7 +43,7 @@ const Layout = ({ children }) => {
         }}
       >
         {children}
-      </div>
+      </main>
     </>
   )
 }
