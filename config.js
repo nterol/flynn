@@ -24,7 +24,7 @@ module.exports = {
       path: '/pages/contacts'
     },
     {
-      label: 'What now',
+      label: 'now',
       path: '/pages/now'
 
     }
@@ -38,10 +38,10 @@ module.exports = {
       facebook: '',
       telegram: '',
       twitter: '',
-      github: '#',
+      github: 'https://github.com/nterol',
       rss: '',
       vkontakte: '',
-      linkedin: '#',
+      linkedin: 'https://www.linkedin.com/in/nicolasterol/',
       instagram: '',
       line: '',
       gitlab: '',
