@@ -5,28 +5,29 @@ import Layout from '../components/Layout';
 import Sidebar from '../components/Sidebar';
 import Page from '../components/Page';
 import { useSiteMetadata } from '../hooks';
-// import type { MarkdownRemark } from '../types';
-
-// type Props = {
-//   data: {
-//     markdownRemark: MarkdownRemark
-//   }
-// };
 
 const PageTemplate = ({ data }) => {
   const { title: siteTitle, subtitle: siteSubtitle } = useSiteMetadata();
   const { body: pageBody } = data.mdx;
 
   const { frontmatter } = data.mdx;
-  const { title: pageTitle, description: pageDescription, socialImage } = frontmatter;
+  const {
+    title: pageTitle,
+    description: pageDescription,
+    socialImage,
+  } = frontmatter;
   const metaDescription = pageDescription !== null ? pageDescription : siteSubtitle;
   const socialImageUrl = typeof socialImage !== 'undefined' ? socialImage['publicURL'] : undefined;
 
   return (
-    <Layout title={`${pageTitle} - ${siteTitle}`} description={metaDescription} socialImage={socialImageUrl} >
+    <Layout
+      title={`${pageTitle} - ${siteTitle}`}
+      description={metaDescription}
+      socialImage={socialImageUrl}
+    >
       <Sidebar />
       <Page title={pageTitle}>
-  <MDXRenderer>{pageBody}</MDXRenderer>
+        <MDXRenderer>{pageBody}</MDXRenderer>
       </Page>
     </Layout>
   );

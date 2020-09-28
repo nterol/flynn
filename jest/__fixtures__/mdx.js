@@ -3,7 +3,7 @@
 module.exports = {
   mdx: {
     id: 'test-123',
-    body: '<p>test</p>',
+    body: '',
     fields: {
       tagSlugs: [
         '/test_0',
