@@ -3,8 +3,8 @@
 module.exports = {
   url: 'https://lumen.netlify.com',
   pathPrefix: '/',
-  title: 'Blog by John Doe',
-  subtitle: 'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
+  title: 'le site de nterol',
+  subtitle: '👋  Je fais du front et je parle de javascript et d\'autres trucs',
   copyright: '© All rights reserved.',
   disqusShortname: '',
   postsPerPage: 4,
@@ -30,9 +30,9 @@ module.exports = {
     }
   ],
   author: {
-    name: 'John Doe',
-    photo: '/photo.jpg',
-    bio: 'Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu.',
+    name: 'Nicolas Terol',
+    photo: '/photo_1.jpg',
+    bio: '👋  Je fais du front et je parle de javascript et d\'autres trucs',
     contacts: {
       email: '',
       facebook: '',
