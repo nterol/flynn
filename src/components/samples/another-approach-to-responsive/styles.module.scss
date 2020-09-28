@@ -1,0 +1,32 @@
+.container {
+  border: 1px solid blue;
+}
+
+.withCSS:before {
+  content: 'Your screen has a 📱 format';
+
+
+
+  /*
+    @media screen and (min-width: 992px) {
+      body:before {
+        content: "tablet paysage"
+      }
+    }
+    */
+
+  
+}
+
+
+@media screen and (min-width: 768px) {
+  .withCSS:before {
+    content: 'Your screen has a tablet format';
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .withCSS:before {
+    content: 'Your screen has a 💻 format';
+  }
+}
