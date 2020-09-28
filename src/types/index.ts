@@ -1,13 +1,12 @@
-// @flow strict
-import type { Node as ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 export type RenderCallback = {
-  // $FlowFixMe
+
   render: (data: any) => ReactNode;
 }
 
 export type Entry = {
-  getIn: (string[]) => string;
+  getIn: (string[]) => string: any;
 }
 
 export type WidgetFor = (string) => string;

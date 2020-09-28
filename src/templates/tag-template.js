@@ -1,4 +1,3 @@
-// @flow strict
 import React from 'react';
 import { graphql } from 'gatsby';
 import Layout from '../components/Layout';
@@ -26,7 +25,7 @@ const TagTemplate = ({ data, pageContext }) => {
     hasNextPage,
   } = pageContext;
 
-  const { edges } = data.allMarkdownRemark;
+  const { edges } = data.allMdx;
   const pageTitle = currentPage > 0
     ? `All Posts tagged as "${tag}" - Page ${currentPage} - ${siteTitle}`
     : `All Posts tagged as "${tag}" - ${siteTitle}`;

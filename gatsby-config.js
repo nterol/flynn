@@ -65,6 +65,7 @@ module.exports = {
           'gatsby-remark-smartypants',
           'gatsby-remark-external-links'
         ],
+        extensions: ['.mdx', '.md'],
         defaultLayouts: {
           default: require.resolve('./src/templates/post-template.js'),
         },

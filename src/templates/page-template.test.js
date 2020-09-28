@@ -1,22 +1,23 @@
-// @flow strict
 import React from 'react';
 import renderer from 'react-test-renderer';
 import { useStaticQuery, StaticQuery } from 'gatsby';
+import * as gMdx from 'gatsby-plugin-mdx';
 import PageTemplate from './page-template';
 import siteMetadata from '../../jest/__fixtures__/site-metadata';
-import markdownRemark from '../../jest/__fixtures__/markdown-remark';
-import type { RenderCallback } from '../types';
+import mdx from '../../jest/__fixtures__/mdx';
+
+jest.spyOn(gMdx, 'MdxRenderer').mockReturnValue('coucou');
 
 describe('PageTemplate', () => {
   const props = {
     data: {
-      ...markdownRemark
+      ...mdx
     }
   };
 
   beforeEach(() => {
     StaticQuery.mockImplementationOnce(
-      ({ render }: RenderCallback) => (
+      ({ render }) => (
         render(siteMetadata)
       ),
       useStaticQuery.mockReturnValue(siteMetadata)
