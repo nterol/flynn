@@ -12,8 +12,8 @@ const PostTemplate = ({ data }) => {
     description: postDescription,
     socialImage,
   } = frontmatter;
-  const metaDescription = postDescription !== null ? postDescription : siteSubtitle;
-  const socialImageUrl = typeof socialImage !== 'undefined' ? socialImage['publicURL'] : undefined;
+  const metaDescription =    postDescription !== null ? postDescription : siteSubtitle;
+  const socialImageUrl =    typeof socialImage !== 'undefined' ? socialImage['publicURL'] : undefined;
 
   return (
     <Layout

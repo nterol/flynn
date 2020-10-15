@@ -1,0 +1,105 @@
+---
+title: Apprendre React avec une application utile
+date: '2020-10-14T23:46:37.121Z'
+template: 'post'
+draft: false
+slug: 'apprendre React avec une app utile'
+category: 'frontend dev'
+tags:
+  - 'css'
+  - 'atomic design'
+description: 'Je vous propose de faire une petite application en React pour nos amis les designers'
+socialImage: '/media/image-2.jpg'
+---
+
+import AsideAnchor from '../../src/components/Atoms/AsideAnchor'
+
+# Apprendre react avec une app utile
+
+Created: Sep 29, 2020 1:24 PM
+hasimage:: No
+
+La plupart des exercices proposés pour apprendre React sont relativement simplistes et hors contexte. Généralement un compteur, auquel on rajoute une solution over-kill du style Redux pour faire je ne sais pas quoi avec le state du compteur.
+
+Je vous propose d'apprendre React avec un exemple légèrement plus concret et à peu près plus utile.
+
+L'an dernier à travers la jungle de mes veilles tech et design je suis tombé sur ce thread twitter :
+
+[https://twitter.com/JustinMezzell/status/1126168335140286464](https://twitter.com/JustinMezzell/status/1126168335140286464)
+
+Un designer s'est créer un template de formes dont il change les couleurs afin de tester la validité d'une palette de couleur pour ses design.
+
+J'ai trouvé ça malin et amusant, et comme j'aime beaucoup mes amis <AsideAnchor>designers *</AsideAnchor>
+
+j'adore bosser avec le designer juste à côté de moi pendant que je développe mes features. Ca s'appelle le [hot potato process](https://danmall.me/articles/hot-potato-process/) 📝 et ça permet de gagner du temps et d'impliquer le dev dans le design de son code
+
+je me suis dit que je pouvais en faire une petite application React.
+
+Et ce c'est ce que je vous propose d'apprendre dans cette article.
+
+## Set up
+
+Les SPA - single page application - sont un peu en perte de vitesse en ce moment, mais on va tout de même utiliser le fameux `create-react-app` qui reste encore le meilleur moyen de commencer à utiliser React sans trop se prendre la tête.
+De toute façon si notre code fonctionne correctement vous pourrez toujours l'adapter pour le faire fonctionner sur Next.js ou Gastby - si vous aimez le over-kill.
+Il se pourrait même que j'écrive deux autres versions de cette article pour Svelte - qui me plait beaucoup - et Vue, une fois que je serais plus à l'aise. Ou justement pour devenir plus à l'aise dessus. On verra 👍
+
+Notre application ne comportera de toute façon qu'une seule page.
+
+### Commencons
+
+Pour bien débuter il va vous falloir vous munir de Node.js.
+
+> La il nous faut une explication pour tout l'équipement:
+> node.js, quel environnement (Mac, Unix, Windows )
+> l'ide
+
+dans votre terminal lancer dans l'ordre les commandes :
+
+```bash
+npx create-react-app color-testing-template (devrait prendre un peu de temps)
+cd color-testing-template (pour rentrer dans le dossier)
+// ici ouvrez le code de votre IDE, j'utilise VSCode, donc juste code .
+npm run start
+```
+
+⏬ Mettre ça quand viendra le problème de pouvoir accèder à un state via un component voisin.
+Bien expliquer que React est one-way data-binding, et que la solution est soit d'utiliser un store manager soit de Lift the state up.
+
+## Store manager
+
+J'écris en 2020 et depuis quelques temps une discussion agite la communauté React sur l'utilisation du Store manager Redux.
+
+Cet outil conçu par Dan Abramov et Andrew Chen a longtemps été présenté comme la solution de-facto pour gérer le state de la plupart des applications modernes, en complément à React.
+
+Il est également utilisable en dehors de React et repose sur le principe d'un Provider - une fonction tout en haut de l'arbre - qui contient et permet d'accèder au state global de l'application. On interagit avec ce state ou ses parties par le biais de reducers, des fonctions vers lesquelles on `dispatch` une action, soit un objet avec un type permettant d'interagir avec le bon reducer, et un payload avec laquelle le state va être muté.
+
+Voyez votre application comme une maison, le store une sorte d'entrepôt loin de votre maison, les reducers comme des magasins spécialisés qui se fournissent chacun sur une étagère spécifique de l'entrepôts et la fonction dispatch c'est vous qui montez dans votre voiture pour aller prendre ou remettre des choses en magasins. A la seule différence que vous ne repartez pas avec votre information tout de suite, vous êtes livré à la maison par une autre fonction `connect` qui vous permet d'avoir votre bien directement dans la salle ou vous avez besoin d'être livré.
+Dites moi combien cette analogie est pertinente sur 10:
+
+> Inclure une component de ranking lié à netlify. →
+
+[Trello](https://trello.com/c/ImS8VYGP/22-%E2%9C%A8-cr%C3%A9er-un-component-de-star-rating)
+
+J'explique tout ça parce qu'on va avoir besoin de ces principes plus tard.
+
+Redux est aujourd'hui largement remis en question, bien que ses mainteneurs assurent son efficacité. Ce n'est pas tant parce que Dan Abramov a lui-même désavoué sa création sur Twitter, mais parce que le package est assez lourd, et demande surtout d'ajouter beaucoup de boilerplate. Il faut envelopper l'app dans un Provider à configurer avec toutes les autres "saveurs" de Redux (Redux Thunk ou Saga, Redux Persist, Redux Beacon, Redux Routines et je vous pass le reste), puis écrire les reducer, écrire les actionsTypes, puis les actions. C'est assez lourd.
+
+Par ailleurs de nouvelles librairies avec des approches plus efficace ou plus modernes on vu le jour parmi lesquels
+
+- Recoil
+- Zustand
+- zaidi je sais pas quoi
+- xstate
+
+Nous n'utiliserons aucune de ces solutions.
+Notre exemple est assez simple et peut tout à fait être gérer par les outils que propose...React lui-même.
+Par ailleurs Redux est certes critiqué aujourd'hui, mais son principe de fonctionnement est si efficace que lors de l'incorporation des Hooks le principe des reducer a été repris.
+On va se contenter de ça et de ce qu'utilise Redux sous le capot : le ContextProvider.
+
+### Créer un custom contextProvider
+
+Pour ceux qui voudrait la source de la technique que je vais employer, je vous met
+ici [le lien vers l'article de Kent C Dodds sur les Context Provider 📝.](https://kentcdodds.com/blog/how-to-use-react-context-effectively/)
+Je ne fais ici que mettre en pratique ce qu'il préconise
+
+Quand on fera le code ajouter la possibilité de copier coller les couleurs depuis les cartes et depuis la palette

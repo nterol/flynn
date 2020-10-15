@@ -29,6 +29,7 @@ const PageTemplate = ({ data }) => {
       <Page title={pageTitle}>
         <MDXRenderer>{pageBody}</MDXRenderer>
       </Page>
+
     </Layout>
   );
 };
