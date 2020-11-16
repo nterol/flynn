@@ -5,7 +5,12 @@ module.exports = {
     description: `Hi there 👋! I'm Nicolas, I'm a french front-end developer. I like Javascript and stuffs.`,
   },
   plugins: [
-    `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        postCssPlugins: [require('tailwindcss')],
+      },
+    },
     {
       resolve: `gatsby-plugin-styled-components`,
       options: { displayName: false },
@@ -35,7 +40,7 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-page-creator",
+      resolve: 'gatsby-plugin-page-creator',
       options: {
         path: `${__dirname}/src/posts`,
       },
