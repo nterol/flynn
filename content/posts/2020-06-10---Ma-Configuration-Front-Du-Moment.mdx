@@ -1,0 +1,143 @@
+---
+title: Ma configuration front du moment
+date: 2020-06-10T23:46:37.121Z
+template: post
+draft: false
+slug: ma-configuration-front-du-moment
+category: Tech Front
+tags:
+  - CSS-in-JS
+  - styled components
+  - Atomic Design
+description: Comment je structure mes projets front en ce moment
+socialImage: '/media/ma-config-front.jpg'
+---
+
+## 💅 Les styled components
+
+J'ai eu une grosse phase [styled-components 📦](https://styled-components.com/) l'an dernier.
+
+J'étais persuadé que ça deviendrait la solution de styling pour toutes les app construites avec des framework/libraries JS. Et en soi je n'avais pas tort, beaucoup de sites utilisant React sont passés dessus.
+
+J'ai donc commencé à faire des petites applications en styled-components et rapidement j'ai eu un soucis.
+Le fait d'avoir du code ressemblant à ça :
+
+```jsx
+const Container = styled.div`
+  /** some style **/
+`
+const Row = styled.div`
+  display: flex;
+`
+
+const Column = styled(Row)`
+  flex-direction: column;
+`
+
+function MyComponent() {
+  /* Some logic here */
+  return (
+    <Container>
+      <Row>
+        {myProps.map((e) => (
+          <SomeOtherComponent key={e.name} {...e} />
+        ))}
+      </Row>
+    </Container>
+  )
+}
+```
+
+Personnellement je n'aime pas ce genre de code parce qu'on ne voit plus le `html` que cela représente.
+
+Certaines stacks utilisent un fichier à part `styled.js` dont elles exportent un object `Styled`
+
+ce qui donne des components ressemblant à ça :
+
+```jsx
+function MyComponent() {
+	return (
+		<Styled.container>
+			<Styled.row>
+				{someprops.map(p => <Styled.listElement {...p} />)}
+			</Styled.row>
+		<Styled.container>
+	);
+}
+```
+
+Et je trouve qu'à la longue, tous les composants finissent par se ressembler. La colorisation de ce genre de `component` n'est pas assez avancée dans mon IDE, je n'ai pas envie de paramétrer ça et je ne suis même pas sur que l'on puisse le faire. Travailler avec ces components devient difficile.
+
+Néanmoins toutes ces raisons ne suffisaient pas à me passer de `styled-components`.
+Le monde du Javascript repose en grande partie sur la Hype passagère de certaine librairie, jusqu'à ce que quelqu'un s'élève contre les trade-off de la dite librairie et propose une meilleure alternative.
+
+Mon évènement déclencheur fut cet article, qui explique en détail le fonctionnement des librairies css-in-js :
+
+[The unseen performance costs of modern CSS-in-JS libraries in React apps](https://calendar.perfplanet.com/2019/the-unseen-performance-costs-of-css-in-js-in-react-apps/)
+
+Beaucoup de librairies utilisent la fonctionnalité `ContextProvider` de React, fournissant une fonctionnalité via un state global à l'application.
+Bien évidemment utiliser `ContextProvider` ne va pas sans certains dégradation des performances, notamment en provoquant des re-render inutiles.
+C'est le cas aussi pour la plupart des librairies css-in-js qui proposent un `ThemeProvider` globale à l'application.
+En soi ce n'est pas un mal et en général elles sont optimisées pour pouvoir économiser ces re-render.
+
+Mais cela suffit à rendre l'application légèrement plus lourde qu'une application traditionnelle, en rajoutant une surcouche de javascript là ou ce n'est peut être pas nécessaire.
+Context Provider mis à part, `styled[nomdutag]` reste une fonction JS qui va utiliser les arguments passés en template string pour appeler un pré-processeur nommé [stylis 📦](https://stylis.js.org/). Ce Préprocesseur va ensuite injecter le CSS généré dans le `html` puis mapper le bon hash de class vers le(s) bon components. Tout ceci rallonge la computation lors du re-render
+
+Quelque soit la librairie css-in-js que vous utilisez il faut bien à un moment que le js soit préprocessé en css.
+
+Enfin je trouvais lourd de devoir écrire des fonctions à même le pseudo css en passant les props. Ca marche. Et c'est grisant au début. Mais je trouvais ça un poil over-kill.
+La fonction `css` par ailleurs amenait pas mal de confusion, mais surtout la plupart des fonctionnalités propre au css natif comme les filtres par exemple n'était naturellement disponible dans `styled-components`. Non il fallait en plus installer [polished 📦](https://polished.js.org/)
+
+En fait `styled-components` fonctionne bien, et je pourrais être amener à le réutiliser si l'occasion s'en présentait. Mais je pense que l'on en a pas besoin dans la plupart des cas.
+
+J'ai néanmoins fini par comprendre ce qui m'avait vraiment plu avec cette librairie : le scope.
+
+## 🔬 Le scope
+
+En utilisant styled-components on peut créer un bloc de style réutilisable, combinable dans d'autre, mais en lui-même isolé du reste de la feuille de style, du moins durant le développement.
+
+Après avoir travaillé sur des feuilles de styles structurées en `BEM` sans fin, liés les unes aux autres par des chemins mystérieux, avec des classes imbriqués dans d'autres avec des mixins infinies, `styled-components` permettaient de profiter d'une simplicité et une rapidité dans le développement.
+
+Mais en fait il est possible de profiter de cette modularité de components simples et réutilisable.  
+Avec les
+Ce qui est fantastique c'est qu'aujourd'hui les stack react (`CRA`, `next.js` et `gatsby`) supportent par défaut les modules de css.
+
+Du coup, comme pour les `styled-components` je peux avoir une fiche de style par component, avec des fiches globales de mixins (par exmple pour les breakpoints, les font-size et les couleurs de l'application), tout en profitant de template JSX plus clairs et des noms de classes apparents.
+Bien sur on perd le dynamisme de l'utilisation des props à même le css, mais ne nous mentons. On utilise principalement cette fonctionnalité pour faire de simple ternaires. Et dans ce cas, autant utiliser [classnames 📦](https://www.npmjs.com/package/classnames) qui permet de faire justement cela, et même des assemblements complexes sans trop de prise de tête.
+
+Néanmoins même avec ça, je n'étais toujours pas au clair sur l'organisation de mes fichiers. OK, j'ai un dossier `styles` rempli de fichiers tels que `Home.module.scss` et `Dropdown.module.scss` mais ça ne ressemble pas ç grand chose, je vois pas trop comment ça scale, et surtout, la tentation de vouloir faire des abstractions avec tout ces fichiers proches les uns des autres - et donc recréer la situation que je mentionnais plus haut avec des pelotte de laine de scss imbriqués- est trop grande.
+
+Et c'est là que Brad Frost vient nous aider à y voir plus clair.
+
+## ⚛️ Atomic Design
+
+Brad Frost est un UX/UI developer qui a popularisé, si ce n'est inventé l'[organisation atomique du front end 📝](https://bradfrost.com/blog/post/atomic-web-design/)
+
+En gros cela consiste à pouvoir découper toutes son application en composants, rien de neuf, puis à les classer en plusieurs niveaux : `atoms`, `molecules`, `organisms`, `templates`, `pages`, chaque niveau étant idéalement composé des niveaux précédents.
+
+[composition d'app](https://www.notion.so/4158869b2d7e46c9a04b6112ce5e5cd4)
+
+Cette méthode permet d'avoir une organisation rapide sur de petits projets, mais convient également à de plus large application.
+
+### Inflation de la codebase et réutilisation des composants
+
+J'ai déjà travaillé sur plusieurs grosses applications dans des domaines très différents. Pourtant toutes adoptaient une organisation de leur composants par appartenance par page, avec une fameuse section fourre tout nommée `common` dans lequel on mettait tout ce qui n'allait pas ailleurs, ou qui allait partout. La justification de cette organisation était que les besoins métiers de chaque page sont radicalement différents, aussi chaque page a donc besoin de composants spécialisés qui lui sont propres.
+
+Le problème de ce type de structure c'est qu'elle ne favorise pas du tout la réutilisation de l'existant. Et sous le prétexte fallacieux de besoins métier, de nouveaux composants sont crées, ce qui mène à une inflation de la codebase, et donc à une accélération de la dette technique.
+
+Accélération de la dette technique car un composant va être utilisé en priorité par rapport à d'autre qui seront délaissés. L'équipe change, les nouveaux arrivants ne comprennent pas les anciens composants, ne savent pas les utiliser certainement parce qu'écrit avec des préceptes plus anciens, mais n'osent pas les supprimer parce qu'utilisé ailleurs, probablement faisant appel à un paquet déprécié que l'on ose pas updater. Et ainsi la codebase se fossilise.
+
+Cette excuse de la logique métier est selon moins une fausse excuse dûe à une méconnaissance des librairies/framework modernes qui permettent généralement de découpler ces logiques du rendu propre.
+C'est notamment ce que permettent les hooks de React, et j'imagine qu'il doit également y avoir des moyens de le faire sous vue ou svelte.
+
+Si ce n'est pas le cas, il est peut être temps de changer framework...
+
+Cette découpe "atomique" permet de favoriser ce découplement logique/ui et ainsi de forcer à réfléchir à des composants mieux construits, plus généraux dans les props nécéssaire à son affichage.
+
+C'est également le moyen de réconcilier l'ux designer de la boite avec les devs. Car c'est une fois ce découpage mis en place et respecté par l'ensemble de l'équipe front que [storybook 📦](https://storybook.js.org/) prend tout son sens, et permet ensuite d'intégrer des outils plus poussés tels que [chromatic 🔧](https://www.chromatic.com/docs/).
+
+### ⌛️ TLDR
+
+`styled-components` c'est cool et hype, mais un poil overkill et peut rendre votre application lente.
+Désormais pour n'importe quel projet front axé sur des composants - pas seulement React donc
+j'utilise les `modules css` avec une architecture `atomic` et c'est le 🔥.
