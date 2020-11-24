@@ -8,9 +8,9 @@ module.exports = {
     extend: {
       colors: {
         blue: {
-          gradient: "#378ea9"
-        }
-      }
+          gradient: '#378ea9',
+        },
+      },
     },
   },
   variants: {},
