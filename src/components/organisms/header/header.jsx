@@ -1,29 +1,34 @@
 import React, { useRef } from 'react'
 import GradientIcon from '../../atoms/gradient/gradient'
+import './header.scss'
 
 import useIntersectionObserver from '../../../hooks/useIntersectionObserver'
+import Social from '../../molecules/socials/socials'
 
-function NHeader({ siteTitle }) {
+function Header({ siteTitle, socials }) {
   const headerRef = useRef(null)
 
   const isInScreen = useIntersectionObserver(headerRef)
 
-  console.log('IS IN SCREEN', isInScreen)
+
+  console.log(isInScreen)
+
   return (
-    <header ref={headerRef} className="p-1 lg:p-8 grid grid-col-6 gap-4">
-      <hgroup className="col-start-1 col-end-3 flex flex-row items-center">
-        <GradientIcon />
-        <h2 className="m-0 text-white font-bold lg:text-2xl sm:text-3xl col-2">
+    <header
+      ref={headerRef}
+      className={`py-2 px-4 lg:px-8 lg:py-4 w-full grid grid-col-5 gap-4 bg-transparent`}
+    >
+      <hgroup className={`col-start-1 col-end-3 flex flex-row items-center`}>
+        <GradientIcon inScreen={isInScreen} />
+        <h2 className="title relative m-0 text-white font-bold lg:text-2xl sm:text-3xl col-2">
           {siteTitle}
         </h2>
       </hgroup>
       <nav className="col-end-7 col-span-2">
-        <div>Github</div>
-        <div>Linkedin</div>
-        <div>codeSandbox</div>
+        <Social socials={socials} />
       </nav>
     </header>
   )
 }
 
-export default NHeader
+export default Header

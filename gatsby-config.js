@@ -3,6 +3,10 @@ module.exports = {
     title: `Nicolas Terol`,
     subtitle: `nterol's personal blog`,
     description: `Hey ! I'm Nicolas and I'm a **front-end** developer.`,
+    socials: {
+      linkedin: 'https://linkedin.com/in/nterol',
+      github: 'https://github.com/nterol',
+    },
   },
   plugins: [
     `gatsby-plugin-postcss`,
