@@ -6,7 +6,7 @@ const Icon = ({ name }) => {
   return (
     <svg className="w-5 h-5" viewBox={icon.viewBox}>
       <title>{name}</title>
-      <path d={icon.path} />
+      <path d={icon.path} fill="#0e172c"/>
     </svg>
   )
 }

@@ -20,7 +20,7 @@ function Header({ siteTitle, socials }) {
     >
       <hgroup className={`col-start-1 col-end-3 flex flex-row items-center`}>
         <GradientIcon inScreen={isInScreen} />
-        <h2 className="title relative m-0 text-white font-bold lg:text-2xl sm:text-3xl col-2">
+        <h2 className="title relative m-0 text-white font-bold text-2xl sm:text-3xl col-2">
           {siteTitle}
         </h2>
       </hgroup>
