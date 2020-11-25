@@ -2,16 +2,16 @@ import React from 'react'
 import { graphql } from 'gatsby'
 
 import Layout from '../components/layout'
-//import BlogDescription from '../components/atoms/blog-description/blog-description'
-//import PostsCard from '../components/organisms/posts-card/posts-card'
 import Hero from '../components/atoms/hero/hero'
 import BoopMoji from '../components/atoms/boop-moji/boop-moji'
+import Quote from '../components/atoms/quote/quote'
 
 export const query = graphql`
   query PostsQuery {
     site {
       siteMetadata {
         description
+        miniBio
       }
     }
     allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
@@ -35,7 +35,7 @@ const IndexPage = ({ data }) => {
   const {
     allMdx: { edges },
     site: {
-      siteMetadata: { description },
+      siteMetadata: { description, miniBio },
     },
   } = data
   return (
@@ -46,6 +46,7 @@ const IndexPage = ({ data }) => {
             <Hero description={description}>
               <BoopMoji ariaLabel="hi !">👋</BoopMoji>
             </Hero>
+            <Quote miniBio={miniBio} />
             {/* {edges.map(({ node: { frontmatter } }) => (
               <PostsCard key={frontmatter.date} {...frontmatter} />
             ))} */}
