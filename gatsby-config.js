@@ -7,7 +7,7 @@ module.exports = {
     miniBio: `${new Date().getFullYear() -
       2016} years ago I wanted to understand how to build a web site. Turns out I enjoy coding so I made it my job !`,
     socials: {
-      linkedin: 'https://linkedin.com/in/nterol',
+      linkedin: 'https://linkedin.com/in/teroln',
       github: 'https://github.com/nterol',
     },
   },
