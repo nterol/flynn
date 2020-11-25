@@ -1,14 +1,18 @@
 module.exports = {
   siteMetadata: {
+    siteUrl: 'https://nicolasterol.com',
     title: `Nicolas Terol`,
     subtitle: `nterol's personal blog`,
     description: `Hey ! I'm Nicolas and I'm a **front-end** developer.`,
+    miniBio: `${new Date().getFullYear() -
+      2016} years ago I wanted to understand how to build a web site. Turns out I enjoy coding so I made it my job !`,
     socials: {
       linkedin: 'https://linkedin.com/in/nterol',
       github: 'https://github.com/nterol',
     },
   },
   plugins: [
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-postcss`,
     `gatsby-plugin-sass`,
     {
@@ -16,7 +20,6 @@ module.exports = {
       options: { displayName: false },
     },
     `gatsby-plugin-react-helmet`,
-    // `gatsby-plugin-mdx`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {

@@ -24,7 +24,7 @@ function Header({ siteTitle, socials }) {
           {siteTitle}
         </h2>
       </hgroup>
-      <nav className="col-end-7 col-span-2">
+      <nav className="p-2 col-end-7 col-span-2 grid">
         <Social socials={socials} />
       </nav>
     </header>

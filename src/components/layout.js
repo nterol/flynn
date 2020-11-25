@@ -15,6 +15,7 @@ const Layout = ({ children }) => {
     query SiteTitleQuery {
       site {
         siteMetadata {
+          siteUrl
           title
           subtitle
           description
@@ -30,13 +31,15 @@ const Layout = ({ children }) => {
   return (
     <>
       <Helmet
-        title={title}
-        meta={[
-          { name: 'subtitle', content: subtitle },
-          { name: 'keywords', content: 'blog' },
-        ]}
+      // title={title}
+      // meta={[
+      //   { name: 'subtitle', content: subtitle },
+      //   { name: 'keywords', content: 'blog' },
+      // ]}
       >
         <html lang="en" />
+        <title>{title}</title>
+        <description>{description}</description>
       </Helmet>
 
       <Header siteTitle={title} socials={socials} />
