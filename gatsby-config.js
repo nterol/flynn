@@ -1,17 +1,25 @@
 module.exports = {
   siteMetadata: {
-    title: `Flynn`,
+    siteUrl: 'https://nicolasterol.com',
+    title: `Nicolas Terol`,
     subtitle: `nterol's personal blog`,
-    description: `Hi there 👋! I'm Nicolas, I'm a french front-end developer. I like Javascript and stuffs.`,
+    description: `Hey ! I'm Nicolas and I'm a **front-end** developer.`,
+    miniBio: `${new Date().getFullYear() -
+      2016} years ago I wanted to understand how to build a web site. Turns out I enjoy coding so I made it my job !`,
+    socials: {
+      linkedin: 'https://linkedin.com/in/nterol',
+      github: 'https://github.com/nterol',
+    },
   },
   plugins: [
+    `gatsby-plugin-sitemap`,
+    `gatsby-plugin-postcss`,
     `gatsby-plugin-sass`,
     {
       resolve: `gatsby-plugin-styled-components`,
       options: { displayName: false },
     },
     `gatsby-plugin-react-helmet`,
-    // `gatsby-plugin-mdx`,
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
@@ -24,7 +32,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
+        path: `${__dirname}/static/images`,
       },
     },
     {
@@ -35,7 +43,7 @@ module.exports = {
       },
     },
     {
-      resolve: "gatsby-plugin-page-creator",
+      resolve: 'gatsby-plugin-page-creator',
       options: {
         path: `${__dirname}/src/posts`,
       },
@@ -51,7 +59,7 @@ module.exports = {
         background_color: '#663399',
         theme_color: '#663399',
         display: 'minimal-ui',
-        icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
+        icon: 'static/images/gatsby-icon.png', // This path is relative to the root of the site.
       },
     },
 

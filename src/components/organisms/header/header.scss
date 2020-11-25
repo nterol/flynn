@@ -1,0 +1,20 @@
+@keyframes underline {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.title {
+  &:before {
+    content: '';
+    height: 0.25rem;
+    position: absolute;
+    background: white;
+    bottom: -0.15rem;
+    width: 2rem;
+    animation: 0.75s underline;
+  }
+}

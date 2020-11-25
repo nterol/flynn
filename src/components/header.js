@@ -4,7 +4,7 @@ import styled, { keyframes, css } from 'styled-components'
 import React, { useState } from 'react'
 import { animated, useTransition } from 'react-spring'
 
-const HeaderContainer = styled.div`
+const HeaderContainer = styled.header`
   padding: 32px;
   display: flex;
   flex-direction: row;
@@ -25,8 +25,8 @@ const Gradient = styled.div`
   width: 75px;
   height: 75px;
   border-radius: 50%;
-  background: linear-gradient(180deg, #378ea9 0%, rgba(255, 255, 255, 0) 100%),
-    #c4c4c4;
+  background: linear-gradient(90deg, #378ea9 0%, rgba(255, 255, 255, 0) 100%),
+  rgba(254, 215, 226, 100);
   position: relative;
 `
 
@@ -77,11 +77,11 @@ const Header = ({ siteTitle, siteSubtitle }) => {
   })
 
   return (
-    <HeaderContainer
-      onMouseEnter={() => sayHello(true)}
-      onMouseLeave={() => sayHello(false)}
-    >
-      <Gradient>
+    <HeaderContainer>
+      <Gradient
+        onMouseEnter={() => sayHello(true)}
+        onMouseLeave={() => sayHello(false)}
+      >
         {transition.map(
           ({ item, key, props }) =>
             item && (
@@ -103,7 +103,7 @@ const Header = ({ siteTitle, siteSubtitle }) => {
             style={{
               color: 'black',
               textDecoration: 'none',
-              marginBottom: '0.5 rem'
+              marginBottom: '0.5 rem',
             }}
           >
             {siteTitle}
