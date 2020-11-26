@@ -26,7 +26,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: `${process.env.GATSBY_GOOGLE_ANALYTICS_ID}`,
+        trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_ID,
       },
     },
     {
