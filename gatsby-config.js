@@ -1,3 +1,7 @@
+require('dotenv').config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     siteUrl: 'https://nicolasterol.com',
@@ -15,6 +19,17 @@ module.exports = {
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-postcss`,
     `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-plugin-purgecss`,
+      options: { tailwind: true },
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: `${process.env.GATSBY_GOOGLE_ANALYTICS_ID}`,
+        head: true,
+      },
+    },
     {
       resolve: `gatsby-plugin-styled-components`,
       options: { displayName: false },

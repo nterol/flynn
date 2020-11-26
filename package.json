@@ -9,14 +9,17 @@
     "axios": "^0.18.0",
     "babel-plugin-styled-components": "^1.10.0",
     "browser-monads": "^1.0.0",
+    "dotenv": "^8.2.0",
     "gatsby": "^2.26.1",
     "gatsby-cli": "^2.4.17",
     "gatsby-image": "^2.0.34",
+    "gatsby-plugin-google-analytics": "^2.6.0",
     "gatsby-plugin-manifest": "^2.0.24",
     "gatsby-plugin-mdx": "^1.2.37",
     "gatsby-plugin-netlify": "^2.0.13",
     "gatsby-plugin-offline": "^2.0.25",
     "gatsby-plugin-postcss": "^3.2.0",
+    "gatsby-plugin-purgecss": "^5.0.0",
     "gatsby-plugin-react-helmet": "^3.3.10",
     "gatsby-plugin-sass": "^2.3.12",
     "gatsby-plugin-sharp": "^2.0.35",
@@ -32,8 +35,7 @@
     "react-spring": "^8.0.27",
     "sharp": "^0.26.3",
     "spotify-web-api-node": "^4.0.0",
-    "styled-components": "^4.2.0",
-    "yarn": "^1.15.2"
+    "styled-components": "^4.2.0"
   },
   "keywords": [
     "gatsby"
