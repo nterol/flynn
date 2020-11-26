@@ -24,11 +24,17 @@ module.exports = {
       options: { tailwind: true },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_ID,
+        trackingIds: [process.env.GATSBY_GOOGLE_ANALYTICS_ID],
       },
     },
+    // {
+    //   resolve: `gatsby-plugin-google-analytics`,
+    //   options: {
+    //     trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_ID,
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-styled-components`,
       options: { displayName: false },
