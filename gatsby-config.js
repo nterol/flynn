@@ -7,6 +7,7 @@ module.exports = {
     siteUrl: 'https://nicolasterol.com',
     title: `Nicolas Terol`,
     subtitle: `nterol's personal blog`,
+    keywords: ['React', 'Javascript', 'Front-end'],
     description: `Hey ! I'm Nicolas and I'm a **front-end** developer.`,
     miniBio: `${new Date().getFullYear() -
       2016} years ago I wanted to understand how to build a web site. Turns out I enjoy coding so I made it my job !`,
@@ -29,12 +30,6 @@ module.exports = {
         trackingIds: [process.env.GATSBY_GOOGLE_ANALYTICS_ID],
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-google-analytics`,
-    //   options: {
-    //     trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_ID,
-    //   },
-    // },
     {
       resolve: `gatsby-plugin-styled-components`,
       options: { displayName: false },
@@ -43,8 +38,10 @@ module.exports = {
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
+        extensions: ['.mdx', '.md'],
         defaultLayouts: {
-          default: require.resolve(`./src/templates/article-template.js`),
+          articles: require.resolve(`./src/templates/article-template.js`),
+          quizzes: require.resolve('./src/templates/quiz-template.js'),
         },
       },
     },
@@ -58,14 +55,34 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: `posts`,
-        path: `${__dirname}/src/posts/`,
+        name: `Quizzes`,
+        path: `${__dirname}/src/content/quizzes`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `Articles`,
+        path: `${__dirname}/src/content/articles`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: 'Skills',
+        path: `${__dirname}/src/content/skills`,
       },
     },
     {
       resolve: 'gatsby-plugin-page-creator',
       options: {
-        path: `${__dirname}/src/posts`,
+        path: `${__dirname}/src/content/quizzes`,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-page-creator',
+      options: {
+        path: `${__dirname}/src/content/articles`,
       },
     },
     `gatsby-transformer-sharp`,

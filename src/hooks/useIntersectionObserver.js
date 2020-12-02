@@ -7,8 +7,11 @@ function useIntersectionObserver(ref) {
   useEffect(() => {
     observer.current = new IntersectionObserver(
       entries => {
-        if (entries[0].isIntersecting) setIsIntersecting(true)
-        else setIsIntersecting(false)
+        if (entries[0].isIntersecting) {
+          setIsIntersecting(true)
+        } else {
+          setIsIntersecting(false)
+        }
       },
       { threshold: 1 }
     )
@@ -16,7 +19,7 @@ function useIntersectionObserver(ref) {
     if (ref.current) {
       observer.current.observe(ref.current)
     }
-  }, [])
+  }, [ref])
 
   return isIntersecting
 }

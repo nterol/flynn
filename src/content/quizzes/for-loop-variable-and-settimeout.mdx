@@ -1,0 +1,32 @@
+---
+path: '/quiz/for-loop-variables-and-settimeout'
+date: 2020-11-23
+title: 'For loop, variables and setTimeout'
+excerpt: 'Can you guess what this loop will print ? '
+tags:
+  - ES6
+  - Javascript
+author: nterol
+answers:
+  [
+    [
+      { value: '1 2 3 4 5', correct: false },
+      { value: '6 6 6 6', correct: true },
+      { value: 'undefined', correct: false },
+      { value: 'Segmentation Fault', correct: false },
+    ],
+  ]
+---
+
+# For loop, variables and setTimeout
+
+Can you guess what this loop will print ?
+
+```Javascript
+
+for(var i = 0; i<5;i++) {
+    setTimeout(() => console.log(i), 1000 * i)
+}
+
+```
+

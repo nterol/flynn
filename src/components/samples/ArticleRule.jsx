@@ -8,7 +8,7 @@ const SvgContainer = styled.svg`
 `
 
 export function ArticleRule() {
-  const [allWordWidth, setALlWordWidth] = useState([])
+  const [allWordWidth, setAllWordWidth] = useState([])
   const sentence = [
     { word: 'We', annotation: false },
     { word: 'make', annotation: false },
@@ -26,7 +26,7 @@ export function ArticleRule() {
       return acc
     }, [])
 
-    setALlWordWidth(sequentalyCompiledWidth)
+    setAllWordWidth(sequentalyCompiledWidth)
   }, [sentenceRef])
 
   const getWordX = i => {

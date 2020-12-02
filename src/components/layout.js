@@ -1,55 +1,34 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import { graphql, useStaticQuery } from 'gatsby'
 
-// import './layout.css'
 import Header from './organisms/header/header'
+import useSiteMetadata from '../hooks/useSiteMetadata'
+import useIntersectionObserver from '../hooks/useIntersectionObserver'
 
-const Layout = ({ children }) => {
+const Layout = ({ children, location }) => {
   const {
     site: {
-      siteMetadata: { title, subtitle, socials, description },
+      siteMetadata: { siteUrl, title, socials, description },
     },
-  } = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          siteUrl
-          title
-          subtitle
-          description
-          socials {
-            linkedin
-            github
-          }
-        }
-      }
-    }
-  `)
+  } = useSiteMetadata()
+
+  const headerRef = useRef(null)
+
+  const isHeaderInScreen = useIntersectionObserver(headerRef)
 
   return (
     <>
-      <Helmet
-      // title={title}
-      // meta={[
-      //   { name: 'subtitle', content: subtitle },
-      //   { name: 'keywords', content: 'blog' },
-      // ]}
-      >
+      <Helmet>
         <html lang="en" />
         <title>{title}</title>
         <description>{description}</description>
+        <link rel="canonical" href={`${siteUrl}${location}`} />
       </Helmet>
-
-      <Header siteTitle={title} socials={socials} />
-      {children}
+      <Header controlRef={headerRef} siteTitle={title} socials={socials} />
+      {location === '/' ? children({ isHeaderInScreen }) : children}
     </>
   )
-}
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
 }
 
 export default Layout

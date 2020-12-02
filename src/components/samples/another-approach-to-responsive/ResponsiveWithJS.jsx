@@ -7,7 +7,7 @@ function ResponsiveWithJS() {
   const screen = useMatchMedia()
   return (
     <section className={styles.container}>
-      <div> You're currntly using a {screen} format</div>
+      <div> You're currently using a {screen} format</div>
     </section>
   )
 }

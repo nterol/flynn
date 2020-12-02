@@ -1,0 +1,105 @@
+@mixin tilted {
+  transform: rotateX(20deg) rotateY(10deg);
+  box-shadow: 20px 30px 20px #c1c1c1;
+}
+
+@mixin card-base($bg) {
+  margin: 0 auto;
+  border-radius: 8px;
+  background: linear-gradient(0.25turn, $bg, pink);
+  padding: 2em;
+  margin-bottom: 2rem;
+  display: grid;
+  grid-gap: 1em;
+  box-shadow: 10px 10px 10px #c1c1c1;
+  transition: all 0.1s ease-in;
+  &:hover {
+    @include tilted;
+  }
+}
+
+.tilted {
+  @include tilted;
+}
+
+.card-container {
+  @include card-base(#8bd3dd);
+  //background: #8bd3dd;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-template-areas: 'title title button';
+}
+
+.large-card-container {
+  @include card-base(#f3d2c1);
+  // background: #f3d2c1;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    '. . button'
+    '. . .'
+    'title title .';
+}
+
+@mixin title-base() {
+  grid-area: title;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  text-align: left;
+
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+  }
+
+  p {
+    font-size: 0.75rem;
+    line-height: 18px;
+  }
+}
+
+.card-title {
+  @include title-base;
+  color: white;
+}
+
+.large-card-title {
+  @include title-base();
+}
+
+@mixin card-button-base() {
+  grid-area: button;
+  display: flex;
+}
+
+.large-card-button {
+  @include card-button-base();
+  justify-content: flex-end;
+}
+
+.card-button {
+  @include card-button-base();
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin button-round($background) {
+  border: none;
+  height: 3rem;
+  width: 3rem;
+  background: $background;
+  border-radius: 50%;
+  font-size: 20px;
+  font-weight: 800;
+  color: #fef6e4;
+  align-items: center;
+}
+
+.plus {
+  @include button-round(#001858);
+}
+
+.check {
+  @include button-round(#f582ae);
+}
